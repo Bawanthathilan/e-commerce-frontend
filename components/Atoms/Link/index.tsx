@@ -4,12 +4,13 @@ import Link from 'next/link'
 interface Link{
     text:string,
     url:string,
-    className?:string
+    className?:string,
+    onClick?:any
 }
 
-const LinkText = ({text , url , className}:Link) => {
+const LinkText = ({text , url , className , onClick}:Link) => {
   return (
-    <Link className={className} href={url}>{text}</Link>
+    <Link onClick={onClick} className={className} href={url}>{text}</Link>
   )
 }
 
