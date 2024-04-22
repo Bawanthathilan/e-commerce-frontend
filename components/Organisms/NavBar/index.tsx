@@ -8,6 +8,7 @@ const NavBar = () => {
             <p className='text-white text-sm'>Welcome to GitHub Shop</p>
             <LinkText className='text-white' url='/' text='Sign In' />
             <LinkText className='text-white' url='/' text='Create an Account' />
+            <LinkText className='text-white' url='/admin' text='Admin Dashboard' />
         </div>
     </div>
   )

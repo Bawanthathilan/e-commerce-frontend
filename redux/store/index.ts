@@ -1,4 +1,3 @@
-import { GetDefaultMiddleware } from './../../node_modules/@reduxjs/toolkit/dist/getDefaultMiddleware.d';
 import createSagaMiddleware from 'redux-saga'
 import {configureStore , Middleware , AnyAction} from '@reduxjs/toolkit'
 import {createLogger} from 'redux-logger'
