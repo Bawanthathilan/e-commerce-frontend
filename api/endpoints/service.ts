@@ -11,3 +11,15 @@ export const login = async (data:any)=>{
         return Promise.reject(error);
     }
 }
+
+// get all products
+export const getAllProducts = async ()=>{
+    console.log("heelll")
+    try {
+        return Promise.resolve(
+            await apiInstance.get(ApiConstants.LIST_ALL_PRODUCTS)
+        )
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}

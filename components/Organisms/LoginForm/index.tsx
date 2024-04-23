@@ -3,6 +3,7 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+import Input from "@/components/Atoms/Input";
 
 import {loginRequest} from '@/redux/reducers/AuthReducers/index'
 
@@ -26,7 +27,7 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({
     defaultValues: {
-      email: "",
+      email: "sdsd",
       password: "",
     },
     resolver: zodResolver(schema),
@@ -35,23 +36,25 @@ const LoginForm = () => {
   const error = useAppSelector((state)=> state.auth.error)
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    console.log("sssds")
     dispatch(loginRequest(data))
-    if(error){
-      reset()
-    }
+    
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("email")} type="text" />
+    <div className="flex items-center justify-center h-screen w-full">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-[60%] bg-white rounded shadow-lg p-8">
+        <div className="flex flex-col gap-5 w-full">
+        <Input {...register("email")} type="text" label="Email"/>
         {errors.email && <span>{errors.email?.message}</span>}
-        <input {...register("password")} type="password" />
+        <Input {...register("password")} type="password" label="Password" />
         {errors.password && <span>{errors.password?.message}</span>}
 
-        <button disabled={isSubmitting} type="submit">
-          {isSubmitting ? "Loading..." : "Submit"}
+        <button type="submit" className="bg-black text-white p-2 rounded-md">
+          submit
         </button>
+        </div>
+        
       </form>
     </div>
   );
