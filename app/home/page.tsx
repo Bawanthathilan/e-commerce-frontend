@@ -21,9 +21,9 @@ const HomePage = () => {
   return (
     <div className=" mt-14">
       <div className="grid grid-cols-4 gap-5 ">
-        {allProducts.map((item) => (
+        {allProducts.map((product) => (
           <>
-            <ProductCard title={item.name} description={item.description} tags={item.tags} key={item.id} />
+            <ProductCard product={product} />
           </>
         ))}
       </div>

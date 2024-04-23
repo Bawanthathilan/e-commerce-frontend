@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "@/components/Atoms/Input";
 import { Button } from "@/components/Atoms/Button";
+import { useRouter } from "next/navigation";
 
 import {loginRequest} from '@/redux/reducers/AuthReducers/index'
 
@@ -28,18 +29,18 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({
     defaultValues: {
-      email: "sdsd",
+      email: "",
       password: "",
     },
     resolver: zodResolver(schema),
   });
 
-  const error = useAppSelector((state)=> state.auth.error)
+  const router = useRouter()
+
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    console.log("sssds")
-    dispatch(loginRequest(data))
-    
+    dispatch(loginRequest(data));
+    router.push('/')   
   };
 
   return (
@@ -55,7 +56,6 @@ const LoginForm = () => {
           submit
         </Button>
         </div>
-        
       </form>
     </div>
   );

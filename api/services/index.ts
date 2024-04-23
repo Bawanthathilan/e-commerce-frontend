@@ -1,5 +1,6 @@
 import axios from "axios"
 import ApiConstants from "./apiConstants"
+import { store } from "@/redux/store";
 
 const apiInstance = axios.create({
     baseURL: ApiConstants.BASE_URL,
@@ -19,9 +20,11 @@ const apiInstance = axios.create({
 
 apiInstance.interceptors.request.use(
     async (config)=>{
+        const state = store.getState();
+        const token = state.auth.token;
 
-        if(!config.headers['Authorization']){
-            delete config.headers['Authorization']
+        if(token){
+            config.headers.Authorization = token;
         }
         return config
     },

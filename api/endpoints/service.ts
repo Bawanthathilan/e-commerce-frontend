@@ -14,10 +14,30 @@ export const login = async (data:any)=>{
 
 // get all products
 export const getAllProducts = async ()=>{
-    console.log("heelll")
     try {
         return Promise.resolve(
             await apiInstance.get(ApiConstants.LIST_ALL_PRODUCTS)
+        )
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+//cart
+export const addToCart = async (data:any)=>{
+    try {
+        return Promise.resolve(
+            await apiInstance.post(ApiConstants.CART , data)
+        )
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+export const getCart = async ()=>{
+    try {
+        return Promise.resolve(
+            await apiInstance.get(ApiConstants.CART)
         )
     } catch (error) {
         return Promise.reject(error);
