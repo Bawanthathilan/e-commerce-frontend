@@ -1,12 +1,11 @@
 "use client"
-import React, { useState } from "react";
+import React from "react";
 import LinkText from "@/components/Atoms/Link";
 
 
 const NavBar = () => {
-  const [showModal, setshowModal] = useState<boolean>(false);
   return (
-    <nav className="bg-slate-900 py-3 flex items-center justify-end  w-full absolute top-0">
+    <nav className="bg-slate-900 py-3 flex items-center justify-end  w-full fixed top-0 z-10">
       
 
       <div className="max-w-6xl mx-auto flex justify-end w-full gap-5 text-sm">

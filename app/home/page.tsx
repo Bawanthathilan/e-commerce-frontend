@@ -18,8 +18,8 @@ const HomePage = () => {
   );
 
   return (
-    <div className="mt-10">
-      <div className="grid grid-cols-4 gap-5">
+    <div className=" mt-14">
+      <div className="grid grid-cols-4 gap-5 ">
         {allProducts.map((item) => (
           <>
             <ProductCard title={item.name} description={item.description} key={item.id} />
