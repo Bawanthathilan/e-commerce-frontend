@@ -1,32 +1,12 @@
 "use client";
-import React, { useEffect } from "react";
-import ProductCard from "@/components/Molecules/ProductCard";
-import { useAppSelector, useAppDispatch } from "@/hooks/reduxHooks";
+import React from "react";
 
-import { getAllProductRequest } from "@/redux/reducers/ProductReducers";
-
+import ProductCardContainer from "@/components/Templates/ProductCardContainer";
 
 const HomePage = () => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getAllProductRequest());
-  }, []);
-
-  const allProducts = useAppSelector(
-    (state) => state.product.listAllProductsData
-  );
-
-
   return (
     <div className=" mt-14">
-      <div className="grid grid-cols-4 gap-5 ">
-        {allProducts.map((product) => (
-          <>
-            <ProductCard product={product} />
-          </>
-        ))}
-      </div>
+      <ProductCardContainer />
     </div>
   );
 };
