@@ -14,24 +14,23 @@ const NavBar = () => {
 
   useEffect(()=>{
       dispatch(getCartRequest())
-  },[])
+  },[cartItems])
 
   function logout() {
-    console.log("sdsd");
     dispatch(logoutRequest());
   }
 
   return (
     <nav className="bg-slate-900 py-3 flex items-center justify-end  w-full fixed top-0 z-10">
       <div className="max-w-6xl mx-auto flex items-center justify-end w-full gap-5 text-sm">
-        <p className="text-white text-sm">Welcome to GitHub Shop</p>
+        <p className="text-white text-sm">Welcome to E Shop</p>
         {!isLogin ? (
           <>
             <LinkText className="text-white" url="/auth/login" text="Sign In" />
           </>
         ) : (
           <>
-            <a className="text-white" onClick={logout}>
+            <a className="text-white cursor-pointer" onClick={logout}>
               {" "}
               Log Out{" "}
             </a>{" "}

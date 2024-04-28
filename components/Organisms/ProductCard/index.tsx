@@ -1,14 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import PlaceholderImg from "@/assets/placeholder.png";
 import { Badge } from "@/components/Atoms/Badge";
-import { ShoppingBasket } from "lucide-react";
-import { useAppDispatch } from "@/hooks/reduxHooks";
+import { ShoppingBasket, Terminal } from "lucide-react";
+import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import { addToCartRequest } from "@/redux/reducers/CartReducers";
 import { Card } from "@/components/Molecules/Card";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogContent,
@@ -33,7 +34,7 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 const ProductCard = ({ product }: ProductCardI) => {
-  const [isOpen , setIsOpen] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const {
     register,
     reset,
@@ -49,14 +50,27 @@ const ProductCard = ({ product }: ProductCardI) => {
   const dispatch = useAppDispatch();
   const tagList = product.tags?.split(",");
 
+  const { addToCartLoading, cartItems } = useAppSelector((state) => state.cart);
+
   const addToCart: SubmitHandler<FormFields> = async (data: any) => {
-    dispatch(addToCartRequest(data));
-    setIsOpen(false);
+    const cartAlready = cartItems.find((item) => item.productId === data.productId)
+    if(cartAlready) {
+      setIsOpen(false);
+      toast.error("Cart item already exists")
+    }else{
+      dispatch(addToCartRequest(data));
+    if (addToCartLoading) {
+      setIsOpen(true);
+      toast.success('Add to cart successfully')
+    } else {
+      setIsOpen(false);
+    }
+    }
   };
 
   return (
     <React.Fragment>
-      <Card className="w-full max-w-xs">
+      <Card className="w-full max-w-xs hover:shadow-lg cursor-pointer">
         <div className="flex aspect-square items-center overflow-hidden rounded-lg">
           <Image
             alt="Product"
