@@ -3,7 +3,6 @@ import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import PlaceholderImg from "@/assets/placeholder.png";
 import { Badge } from "@/components/Atoms/Badge";
 import { ShoppingBasket, Terminal } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
@@ -76,7 +75,7 @@ const ProductCard = ({ product }: ProductCardI) => {
             alt="Product"
             className="object-cover"
             height={300}
-            src={PlaceholderImg}
+            src={product.image}
             style={{
               aspectRatio: "250/250",
               objectFit: "cover",

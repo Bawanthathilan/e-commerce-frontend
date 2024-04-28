@@ -4,7 +4,7 @@ import LinkText from "@/components/Atoms/Link";
 import { useAppSelector, useAppDispatch } from "@/hooks/reduxHooks";
 import { logoutRequest } from "@/redux/reducers/AuthReducers";
 import { ShoppingBasket } from "lucide-react";
-import { Badge } from "@/components/Atoms/Badge";
+import Link from "next/link";
 import { getCartRequest } from "@/redux/reducers/CartReducers";
 
 const NavBar = () => {
@@ -14,7 +14,7 @@ const NavBar = () => {
 
   useEffect(()=>{
       dispatch(getCartRequest())
-  },[cartItems])
+  },[])
 
   function logout() {
     dispatch(logoutRequest());
@@ -53,10 +53,12 @@ const NavBar = () => {
 
         {isLogin && <h2 className="text-white">{loginData.user.name}</h2>}
         {isLogin && (
-          <div className="flex flex-row gap-2">
-            <ShoppingBasket size={25} color="white" />
-            <Badge variant="secondary">{cartItems?.length}</Badge>
+          <Link href={'/cart'} className="relative inline-block cursor-pointer">
+          <ShoppingBasket className="h-6 w-6" color="white" />
+          <div className="absolute top-0 right-0 -mt-2 -mr-2 rounded-full bg-red-500 px-2 py-0.5 text-xs font-medium text-white">
+            {cartItems.length}
           </div>
+        </Link>
         )}
       </div>
     </nav>
