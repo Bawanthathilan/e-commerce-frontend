@@ -26,7 +26,7 @@ const NavBar = () => {
     <>
       <nav className="bg-slate-900 py-3 flex items-center justify-end  w-full fixed top-0 z-10">
         <div className="max-w-6xl mx-auto flex items-center justify-end w-full gap-5 text-sm">
-          <p className="text-white text-sm">Welcome to E Shop</p>
+          <LinkText url="/" text="Welcome to E Shop" className="text-white text-sm"/>
           {!isLogin ? (
             <>
               <LinkText
