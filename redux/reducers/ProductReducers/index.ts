@@ -17,7 +17,7 @@ const productSlice = createSlice({
     name:'products',
     initialState,
     reducers:{
-        getAllProductRequest:(state)=>{
+        getAllProductRequest:(state , action:PayloadAction<any>)=>{
             state.listAllProductloading = true;
             state.listAllError = null;
         },

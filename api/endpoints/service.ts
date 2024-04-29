@@ -13,10 +13,10 @@ export const login = async (data:any)=>{
 }
 
 // get all products
-export const getAllProducts = async ()=>{
+export const getAllProducts = async (data:any)=>{
     try {
         return Promise.resolve(
-            await apiInstance.get(ApiConstants.LIST_ALL_PRODUCTS)
+            await apiInstance.get(`${ApiConstants.LIST_ALL_PRODUCTS}?skip=${data}`)
         )
     } catch (error) {
         return Promise.reject(error);
