@@ -4,8 +4,8 @@ import "./globals.css";
 
 import StoreProvider from "./StoreProvider";
 
-import NavBar from "@/components/Organisms/NavBar";
-import { Toaster } from "@/components/Atoms/Toast/sonner";
+import NavBar from "@/components/common/NavBar";
+import { Toaster } from "@/components/ui/Toast/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 

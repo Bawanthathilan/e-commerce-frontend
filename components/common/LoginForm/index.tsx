@@ -3,8 +3,8 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
-import { Input } from "@/components/Atoms/Input";
-import { Button } from "@/components/Atoms/Button";
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
 
 import {loginRequest} from '@/redux/reducers/AuthReducers/index'

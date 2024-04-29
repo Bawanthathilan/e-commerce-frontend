@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-import ProductCardContainer from "@/components/Templates/ProductCardContainer";
+import ProductCardContainer from "@/components/common/ProductCardContainer";
 
 const HomePage = () => {
   return (

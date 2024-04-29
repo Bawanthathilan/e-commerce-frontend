@@ -1,6 +1,6 @@
 import React, { useEffect , useState } from "react";
 import { useAppSelector, useAppDispatch } from "@/hooks/reduxHooks";
-import ProductCard from "@/components/Organisms/ProductCard";
+import ProductCard from "@/components/common/ProductCard";
 import { getAllProductRequest } from "@/redux/reducers/ProductReducers";
 import {
   Pagination,
@@ -10,7 +10,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/Molecules/Pagination";
+} from "@/components/ui/Pagination";
 
 const ProductCardContainer = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +23,7 @@ const ProductCardContainer = () => {
 
   
 
-  const {listAllProductsData}:any = useAppSelector(
+  const {listAllProductsData , listAllProductloading}:any = useAppSelector(
     (state) => state.product
   );
 
@@ -49,11 +49,11 @@ const ProductCardContainer = () => {
       <div className="grid grid-cols-4 gap-5 ">
         {listAllProductsData?.data?.length > 0 && listAllProductsData?.data.map((product:any , index:number) => (
           <React.Fragment key={index}>
-            <ProductCard product={product} />
+            <ProductCard Loading={listAllProductloading} product={product} />
           </React.Fragment>
         ))}
       </div>
-      <Pagination className="mt-10">
+      <Pagination className="my-10">
         <PaginationContent>
           <PaginationItem className=" cursor-pointer">
             <PaginationPrevious onClick={handlePrevPage} />

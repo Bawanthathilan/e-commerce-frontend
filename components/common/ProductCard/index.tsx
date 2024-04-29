@@ -3,11 +3,11 @@ import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Badge } from "@/components/Atoms/Badge";
+import { Badge } from "@/components/ui/Badge";
 import { ShoppingBasket, Terminal } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import { addToCartRequest } from "@/redux/reducers/CartReducers";
-import { Card } from "@/components/Molecules/Card";
+import { Card } from "@/components/ui/Card";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -16,13 +16,15 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@/components/Molecules/Dialog";
-import { Input } from "@/components/Atoms/Input";
-import { Label } from "@/components/Atoms/Label";
-import { Button } from "@/components/Atoms/Button";
+} from "@/components/ui/Dialog";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { Button } from "@/components/ui/Button";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 interface ProductCardI {
   product: any;
+  Loading: boolean;
 }
 
 const schema = z.object({
@@ -32,7 +34,19 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
-const ProductCard = ({ product }: ProductCardI) => {
+ function SkeletonCard() {
+  return (
+    <div className="flex flex-col space-y-3">
+      <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-[250px]" />
+        <Skeleton className="h-4 w-[200px]" />
+      </div>
+    </div>
+  )
+}
+
+const ProductCard = ({ product , Loading }: ProductCardI) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const {
     register,
@@ -69,7 +83,7 @@ const ProductCard = ({ product }: ProductCardI) => {
 
   return (
     <React.Fragment>
-      <Card className="w-full max-w-xs hover:shadow-lg cursor-pointer">
+      {Loading ? (<><SkeletonCard/></>):(<Card className="w-full max-w-xs hover:shadow-lg cursor-pointer">
         <div className="flex aspect-square items-center overflow-hidden rounded-lg">
           <Image
             alt="Product"
@@ -127,7 +141,8 @@ const ProductCard = ({ product }: ProductCardI) => {
             </Dialog>
           </div>
         </div>
-      </Card>
+      </Card>)}
+      
     </React.Fragment>
   );
 };
